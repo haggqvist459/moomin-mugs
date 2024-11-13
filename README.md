@@ -1,8 +1,22 @@
-# React + Vite
+# Todo: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Main Page: 
+[ ] List of mugs
 
-Currently, two official plugins are available:
+## Detail Page: 
+[ ] Component with image viewer, description, year & season, price 
+[ ]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Behind username and password:
+[ ] List of owned mugs 
+[ ] Same component as previously but with ownership indicator added 
+[ ]
+
+## Other Components: 
+[ ] Header / Navigation bar
+[ ] Footer with links to github page
+[ ]
+
+## Other Tasks: 
+[ ] index files for exporting & importing components
+[ ]
