@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import './App.css';
 import MainLayout from './layouts/MainLayout';
-import { HomePage, DetailsPage, LoginPage, AdminPage } from './pages';
+import { HomePage, DetailsPage, LoginPage, AdminPage, ErrorPage } from './pages';
 import { ROUTES } from './utils/constants'
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
         <Route path={ROUTES.ADMIN} element={<AdminPage/>}/>
         <Route path={ROUTES.DETAILS} element={<DetailsPage/>}/>
         <Route path={ROUTES.LOGIN} element={<LoginPage/>}/>
+        <Route path={ROUTES.ERROR} element={<ErrorPage/>}/>
       </Route>
     )
   )

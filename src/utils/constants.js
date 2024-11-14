@@ -3,5 +3,10 @@ export const ROUTES = {
     HOME: '/',
     DETAILS: '/details',
     ADMIN: '/admin',
-    LOGIN: '/login'
+    LOGIN: '/login',
+    ERROR: '/*'
+}
+
+export const API = {
+    URL: ''
 }
