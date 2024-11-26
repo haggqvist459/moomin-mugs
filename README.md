@@ -7,8 +7,10 @@
 - [ ] Component with image viewer for multiple images, description, year & season, price 
 
 ### Admin page: 
+- [ ] use localStorage for the mugs 
 - [ ] Add new records
     - web form 
+    - Base64 strings for images 
 - [ ] Update information on existing records 
     - web form
 - [ ] Delete records  
@@ -18,12 +20,11 @@
 - [ ] Customised page with error message
     - [ ] Confused looking moomin?
 
-### Login Page: 
+### Login Component:
 - [ ] Basic auth page
 
 ### Behind username and password:
-- [ ] List of owned mugs 
-- [ ] Same component as previously but with ownership indicator added 
+- [ ] admin panel
 
 
 ### Other Components: 

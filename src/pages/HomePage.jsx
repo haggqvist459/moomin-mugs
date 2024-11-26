@@ -7,3 +7,11 @@ const HomePage = () => {
 }
 
 export default HomePage
+
+
+
+// grid size: 
+// 3x wide on computer & tablet in landscape
+// 2x wide on tablets portrait 
+// 1x wide on phone 
+

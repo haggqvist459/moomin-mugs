@@ -5,9 +5,15 @@ import { NavBar, Footer } from '../components'
 const MainLayout = () => {
     return (
         <>
-            <NavBar/>
-            <Outlet/>
-            <Footer/>
+            <div className='flex flex-col h-screen justify-between'>
+                <NavBar />
+                <div className='mb-auto flex justify-center mt-2'>
+                    <Outlet />
+                </div>
+                <div className='h-10'>
+                    <Footer />
+                </div>
+            </div>
         </>
     )
 }
