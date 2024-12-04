@@ -1,20 +1,28 @@
+import { API } from "./constants";
 
-// use later to supply different components with mug data 
+export const mugLoader = async ({ params }) => {
 
-const mugLoader = async ({ params }) => {
-
+    console.log("mugLoader start")
     try {
-        const res = await fetch(``);
+        const res = await fetch(API.URL + params.id);
+        const data = await res.json();
+        console.log("mugLoader data: ", data)
+        return data;
     } catch (error) {
         console.log("mugLoader error: ", error)
     }
 
+}
+
+export const loadAllMugs = async () => {
+    
     try {
+        const res = await fetch(API.URL);
         const data = await res.json();
+        console.log("loadAllMugs data: ", data);
+        return data;
     } catch (error) {
-        console.log("mugLoader JSON error: ", error)
+        console.log("Error loading all mugs: ", error)
     }
-    
-    
-    return data;
+
 }

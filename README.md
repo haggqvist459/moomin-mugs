@@ -31,7 +31,8 @@
 - [ ] Header / Navigation bar
     - [x] Small logo
     - [x] Project title 
-    - [ ] Navigation links in opposite corner (login etc) 
+    - [x] Navigation links in opposite corner (login etc) 
+    - [ ] Finish styling Nav bar 
 - [ ] Footer with links to github page
 
 
@@ -41,3 +42,4 @@
 - [ ] mongodb database
 - [ ] API, express?
 - [ ] Find a fitting font 
+- [ ] Fix useLoaderData issues for home page 
