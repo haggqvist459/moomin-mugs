@@ -1,14 +1,13 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { NavBar, Footer } from '../components'
 import { NAV_BAR_OPTIONS } from '../utils'
+import { NavBar, Footer } from '../components'
 
-const MainLayout = () => {
-
+const AdminLayout = () => {
     return (
         <>
             <div className='flex flex-col h-screen justify-between'>
-                <NavBar navOptions={NAV_BAR_OPTIONS.HOME}  />
+                <NavBar navOptions={NAV_BAR_OPTIONS.ADMIN} />
                 <div className='mb-auto flex justify-center mt-2'>
                     <Outlet />
                 </div>
@@ -20,8 +19,4 @@ const MainLayout = () => {
     )
 }
 
-export default MainLayout
-
-// Main layout to hold header with navbar, and footer
-// And all the other components wrapped between them
-// Outlet = whatever child element, or page, as defined in App.jsx, in createBrowserRouter
+export default AdminLayout
