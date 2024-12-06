@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { loadList, saveList } from '../../utils/localStorage'
+import { v4 as uuid } from 'uuid';
+import { LOCALSTORAGE_KEY } from '../../utils';
 
 const AddMugPage = () => {
 
-  const [season, setSeason] = useState('')
-
+  const [mugList, setMugList] = useState([]);
   const [newMug, setNewMug] = useState({
     'id': '',
     'name': '',
@@ -13,13 +15,25 @@ const AddMugPage = () => {
     'imageUrl': '',
   })
 
+  useEffect(() => {
+
+    // load localstorage or initialize empty array if nothing in localstorage 
+    const storedMugs = loadList() || [];
+    console.log("AddMugPage useEffect storedMugs: ", storedMugs);
+    
+    // const storedMugs = JSON.parse(localStorage.getItem(localStorage.getItem(LOCALSTORAGE_KEY))) || [];
+    console.log('Loaded from localStorage:', storedMugs);
+    setMugList(storedMugs)
+
+  }, []);
+
   const convertImagetoString = (file) => {
     // convert selected image to a base64 URl string 
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onload = () => {
-        console.log("fileReader result: ", fileReader.result )
+        // console.log("fileReader result: ", fileReader.result)
         resolve(fileReader.result);
       };
       fileReader.onerror = (error) => {
@@ -30,16 +44,45 @@ const AddMugPage = () => {
 
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0];
-    console.log('file: ', file)
-    const base64Image = await convertImagetoString(file)
-    setNewMug({...newMug, imageUrl: base64Image});
+    // console.log('file: ', file)
+    const base64Image = await convertImagetoString(file);
+    setNewMug({ ...newMug, imageUrl: base64Image });
+
   }
+
+
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(newMug);
-    // Submit the mug to the json file 
-    // Navigate back to admin page or home page?
+
+    // Assign an ID to the mug 
+    const mugWithId = { ...newMug, id: uuid()}
+
+    // Create an array to save into localStorage 
+    const updatedMugList = [...mugList, mugWithId];
+
+    console.log('Before saving:', mugList);
+    console.log('After adding new mug:', updatedMugList);
+
+    // update state 
+    setMugList(updatedMugList);
+
+    // save into localstorage, the new array. 
+    saveList(updatedMugList);
+
+    // Clear the state and reset the form 
+    setNewMug({
+      'id': '',
+      'name': '',
+      'year': '',
+      'season': '',
+      'description': '',
+      'imageUrl': '',
+    })
+
+    // Clear the image upload field 
+    e.target.reset();
+
   }
 
 
@@ -64,9 +107,8 @@ const AddMugPage = () => {
                 id='name'
                 required
                 value={newMug.name}
-                // onChange={(e) => setName(e.target.value)} 
-                onChange={(e) => setNewMug({...newMug, name: e.target.value})}
-                />
+                onChange={(e) => setNewMug({ ...newMug, name: e.target.value })}
+              />
             </div>
             {/* Year */}
             <div className='mb-2'>
@@ -79,7 +121,7 @@ const AddMugPage = () => {
                 id='year'
                 required
                 value={newMug.year}
-                onChange={(e) => setNewMug({...newMug, year: e.target.value})} />
+                onChange={(e) => setNewMug({ ...newMug, year: e.target.value })} />
             </div>
             {/* Season */}
             <div className='mb-2'>
@@ -91,8 +133,8 @@ const AddMugPage = () => {
                 name='season'
                 id='season'
                 value={newMug.season}
-                onChange={(e) => setNewMug({...newMug, season: e.target.value})} 
-                />
+                onChange={(e) => setNewMug({ ...newMug, season: e.target.value })}
+              />
             </div>
             {/* Description */}
             <div className='mb-2'>
@@ -106,7 +148,7 @@ const AddMugPage = () => {
                 rows="4"
                 required
                 value={newMug.description}
-                onChange={(e) => setNewMug({...newMug, description: e.target.value})} />
+                onChange={(e) => setNewMug({ ...newMug, description: e.target.value })} />
             </div>
             {/* image selector */}
             <div className='mb-2'>
@@ -136,3 +178,23 @@ export default AddMugPage
 
 // same form can be used with edit mug, just add existing values
 // finish styling 
+
+/*
+
+Replaced turquoise Moomintroll mug made between 2013 - 2018. Set consists of mug, bowl and plate. Currently in production.
+
+
+*/
+
+    // Save the list to state, with the new mug
+    // if (mugList.length === 0) {
+    //   // New arrary in case its the first mug in the list 
+    //   setMugList([newMug]);
+    // } else {
+    //   // If the list has mugs in it already, add the new one at the end of the list. 
+      
+    // }
+
+        // update the list of mugs state with the new mug 
+
+    // clear all the text fields and the file uploader to prepare for the next mug 

@@ -56,3 +56,19 @@ export const NAV_BAR_OPTIONS = {
 export const API = {
     URL: 'http://localhost:8888/mugs/'
 }
+
+
+export const LOCALSTORAGE_KEY = 'storedMugList'
+
+
+
+export const INDEXED_DB = {
+    'db' : 'mugsDatabase',
+    'store' : 'mugsStore',
+    'yearDataField': 'year',
+    'seasonDataField': 'season',
+    'nameDataField': 'name',
+    'nameIndex': 'name',
+    'yearIndex': 'releaseYear',
+    'yearSeasonIndex': 'yearAndSeason'
+}

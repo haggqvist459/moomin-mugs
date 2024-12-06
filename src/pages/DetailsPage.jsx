@@ -26,7 +26,6 @@ const DetailsPage = () => {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

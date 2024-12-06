@@ -39,7 +39,8 @@
 ### Other Tasks: 
 - [ ] index files for exporting & importing components
 - [ ] start with local json file for data 
-- [ ] mongodb database
+- [ ] mongodb database? 
 - [ ] API, express?
-- [ ] Find a fitting font 
-- [ ] Fix useLoaderData issues for home page 
+- [ ] Find a font 
+- [ ] Fix useLoaderData issues for home page - not necessary when using localStorage
+- [ ] AdminLayout initially empty, should have landing page for admin showing 

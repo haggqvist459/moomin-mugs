@@ -9,10 +9,8 @@ const NavBar = ({ navOptions }) => {
 
     useEffect(() => {
 
-        console.log('navOptions: ', navOptions);
         setMenuOptions(navOptions);
-        console.log('menuOptions: ', menuOptions);
-
+        
     });
 
     const linkClass = ({ isActive }) => isActive
@@ -40,10 +38,6 @@ const NavBar = ({ navOptions }) => {
                     {/* Righthand side navigation links  */}
                     <div className='flex space-x-2'>
                         {navBarOptions}
-                        {/* <NavLink to={ROUTES.HOME} className={linkClass}> Home </NavLink>
-                        <NavLink to={ROUTES.LOGIN} className={linkClass}> Login </NavLink>
-                        <NavLink to={ROUTES.ADMIN} className={linkClass}> Admin </NavLink> */}
-
                     </div>
                 </div>
             </nav>
