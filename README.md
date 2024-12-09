@@ -44,3 +44,4 @@
 - [ ] Find a font 
 - [ ] Fix useLoaderData issues for home page - not necessary when using localStorage
 - [ ] AdminLayout initially empty, should have landing page for admin showing 
+- [ ] Global state management, useContext? 

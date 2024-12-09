@@ -1,42 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { useLoaderData } from 'react-router-dom';
 import { Mug } from '../components';
-import { API, loadList, LOCALSTORAGE_KEY, saveList } from '../utils';
+import { API, loadList } from '../utils';
 
 const HomePage = () => {
 
-  const [mugs, setMugs] = useState([]);
   const [mugList, setMugList] = useState([]);
 
 
   useEffect(() => {
     
-    const storedMugs = JSON.parse(localStorage.getItem(loadList())) || [];
-    setMugList(storedMugs)
-
-
-    const fetchMugs = async () => {
-      try {
-        const res = await fetch(API.URL);
-        const data = await res.json();
-        setMugs(data);
-        // console.log("mugs: ", mugs)
-      } catch (error) {
-        console.log("Error fetching list of mugs: ", error)
-      }
-    }
-
-    fetchMugs();
+    // Load mugs from localStorage
+    const storedMugs = loadList();
+    // Check loaded result 
+    console.log("HomePage useEffect storedMugs: ", storedMugs);
+    // Update state
+    setMugList(storedMugs);
 
   }, [])
 
-  // console.log(mugsData);
+  
 
   return (
     <div className='sm-flex'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-10'>
-        {mugs.map((mug) => (
-          <Mug mug={mug} key={mug.id} />
+        {/* Display a message in case there are no mugs stored. */}
+        {/* Perhaps a link to add mug page */}
+        {mugList.map((mug) => (
+          <Mug id={mug.id} mug={mug} key={mug.id} />
         ))}
       </div>
     </div>
@@ -66,5 +56,7 @@ if (loadedList === undefined) {
           setMugList(loadedList);
           console.log("HomePage useEffect mugList: ", mugList);
         }
+
+
 
 */

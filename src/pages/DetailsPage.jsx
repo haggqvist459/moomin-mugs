@@ -1,19 +1,22 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { loadMugDetails } from '../utils/localStorage';
+import { useLoaderData } from 'react-router-dom';
 
-const DetailsPage = () => {
+
+const DetailsPage = ({ id }) => {
 
   const mug = useLoaderData();
 
   return (
     <div className='flex flex-1 justify-center'>
       <div className='w-96 h-96 mx-2 mt-20 flex-end relative'>
-        {mug.imageURL == 'n/a'
+        {/* Add some standard image in case there is no image url or if url is broken */}
+        {mug.imageUrl == 'n/a'
           ? <></>
           : <img
             className='h-auto max-w-full absolute bottom-0 left-0'
             alt="Moomin Mug"
-            src={mug.imageURL} />}
+            src={mug.imageUrl} />}
       </div>
       <div className='w-96 h-96 mx-2 mt-20 flex flex-col justify-end'>
         <div className='flex flex-1 flex-col justify-end'>
