@@ -6,7 +6,7 @@
             "year": "2019 - ",
             "description": "The newest Moomintroll series was launched in 2019 to replace the turquoise Moomintroll mug that was in production between 2013-2018. The design of the green Moomintroll mug, bowl and plate is made by Tove Slotte, based on Tove Jansson’s exciting and funny comic Moomin and the Martians (1957). The green ceramic series will be in Arabia’s production for the time being.",
             "season": "n/a",
-            "imageURL": "../src/assets/images/mugs/89_green_moomintroll.png"
+            "imageUrl": "../src/assets/images/mugs/89_green_moomintroll.png"
         },
         {
             "id": "152",
@@ -14,7 +14,7 @@
             "year": "2024",
             "description": "he 2024 winter seasonal mug continues the familiar winter sports theme from the two previous years. The illustration is inspired by Tove Jansson’s 1955 comic story Moomin’s Winter Follies, in which the Moominvalley residents open epic Winter Games.",
             "season": "Winter",
-            "imageURL": "../src/assets/images/mugs/152_skijump.png"
+            "imageUrl": "../src/assets/images/mugs/152_skijump.png"
         },
         {
             "id": "3",
@@ -22,7 +22,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         },
         {
             "id": "1",
@@ -30,7 +30,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         },
         {
             "id": "90",
@@ -38,7 +38,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         },
         {
             "id": "5",
@@ -46,7 +46,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         },
         {
             "id": "6",
@@ -54,7 +54,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         },
         {
             "id": "8",
@@ -62,7 +62,7 @@
             "year": "unknown",
             "description": "n/a",
             "season": "n/a",
-            "imageURL": "n/a"
+            "imageUrl": "n/a"
         }
     ]
 }

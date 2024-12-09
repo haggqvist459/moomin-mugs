@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { loadList, saveList } from '../../utils/localStorage'
 import { v4 as uuid } from 'uuid';
-import { LOCALSTORAGE_KEY } from '../../utils';
 
 const AddMugPage = () => {
 
@@ -17,13 +16,12 @@ const AddMugPage = () => {
 
   useEffect(() => {
 
-    // load localstorage or initialize empty array if nothing in localstorage 
-    const storedMugs = loadList() || [];
-    console.log("AddMugPage useEffect storedMugs: ", storedMugs);
-    
-    // const storedMugs = JSON.parse(localStorage.getItem(localStorage.getItem(LOCALSTORAGE_KEY))) || [];
-    console.log('Loaded from localStorage:', storedMugs);
-    setMugList(storedMugs)
+    // Load mugs from localStorage
+    const storedMugs = loadList();
+    // Check loaded result 
+    console.log("HomePage useEffect storedMugs: ", storedMugs);
+    // Update state
+    setMugList(storedMugs);
 
   }, []);
 

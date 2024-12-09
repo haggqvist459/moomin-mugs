@@ -4,7 +4,8 @@ import { MainLayout, AdminLayout } from './layouts';
 import { HomePage, DetailsPage, LoginPage, AdminPage, ErrorPage } from './pages';
 import { AddMugPage, EditMugPage, DeleteMugPage } from './pages/admin';
 import { ROUTES } from './utils/constants'
-import { loadAllMugs, mugLoader } from './utils';
+import { mugLoader } from './utils';
+
 
 function App() {
 

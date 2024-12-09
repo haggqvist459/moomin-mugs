@@ -5,15 +5,23 @@ import { ROUTES } from '../utils/constants'
 
 const Mug = ({ mug }) => {
 
+  useEffect(() => {
+
+    console.log("Mug useEffect data: ", mug.name)
+    console.log("Mug useEffect data: ", mug.id)
+    // console.log("MUG IMAGE URL: ", mug.imageUrl);
+
+  }, [])
+
   return (
     <div className="flex flex-col w-96 h-96">
       <Link to={ROUTES.DETAILS + mug.id}>
-        {mug.imageURL == 'n/a'
+        {mug.imageUrl == 'n/a'
           ? <></>
           : <img
             className='w-auto h-80'
             alt="Moomin Mug"
-            src={mug.imageURL} />}
+            src={mug.imageUrl} />}
       </Link>
       <div className='flex flex-1 items-end ml-10'>
         <h3 className='px-2'>{mug.name}</h3>
