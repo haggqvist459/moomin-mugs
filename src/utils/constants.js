@@ -1,15 +1,25 @@
 // Path constants for routes
 export const ROUTES = {
     HOME: '/',
+    DETAILS: '/details/:id',
+    DETAILS_PAGE: '/details/',
+    ERROR: '*',
+    ADMIN: '/admin',
+    DELETE: '/admin/delete',
+    EDIT_PAGE: '/admin/edit/',
+    EDIT_DETAILS: '/admin/edit/:id',
+    ADD: '/admin/add'
+}
+
+/* 
+
+DETAILS: '/details/:id',
+DETAILS_PAGE: '/details/',
+
     DETAILS_PAGE: 'details/:id',
     DETAILS: 'details/',
-    ADMIN: 'admin',
-    LOGIN: 'login',
-    ERROR: '*',
-    DELETE: 'delete',
-    EDIT: 'edit:id',
-    ADD: 'add'
-}
+
+*/
 
 export const NAV_BAR_OPTIONS = {
     HOME: [
@@ -42,7 +52,7 @@ export const NAV_BAR_OPTIONS = {
         },
         {
             "id": "4",
-            "route": ROUTES.EDIT,
+            "route": ROUTES.EDIT_PAGE,
             "text": "Edit"
         },
         {
@@ -63,8 +73,8 @@ export const LOCALSTORAGE_KEY = 'storedMugList'
 
 
 export const INDEXED_DB = {
-    'db' : 'mugsDatabase',
-    'store' : 'mugsStore',
+    'db': 'mugsDatabase',
+    'store': 'mugsStore',
     'yearDataField': 'year',
     'seasonDataField': 'season',
     'nameDataField': 'name',
