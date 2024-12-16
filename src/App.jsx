@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import { MainLayout, AdminLayout } from './layouts';
-import { HomePage, DetailsPage, LoginPage, AdminPage, ErrorPage } from './pages';
-import { AddMugPage, EditMugPage, DeleteMugPage } from './pages/admin';
+import { HomePage, DetailsPage, AdminPage, ErrorPage } from './pages';
+import { AddMugPage, EditMugPage, DeleteMugPage, EditMugDetailsPage } from './pages/admin';
 import { ROUTES } from './utils/constants'
 import { mugLoader } from './utils';
 
@@ -14,14 +14,14 @@ function App() {
       <Route>
         <Route path={ROUTES.HOME} element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path={ROUTES.DETAILS_PAGE} element={<DetailsPage />} loader={mugLoader} />
-          <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={ROUTES.DETAILS} element={<DetailsPage />} loader={mugLoader} />
           <Route path={ROUTES.ERROR} element={<ErrorPage />} />
         </Route>
         <Route path={ROUTES.ADMIN} element={<AdminLayout />}>
-          <Route path={ROUTES.ADMIN} element={<AdminPage/>}/>
+          <Route index element={<AdminPage/>}/>
           <Route path={ROUTES.ADD} element={<AddMugPage/>}/>
-          <Route path={ROUTES.EDIT} element={<EditMugPage/>}/>
+          <Route path={ROUTES.EDIT_PAGE} element={<EditMugPage/>}/>
+          <Route path={ROUTES.EDIT_DETAILS} element={<EditMugDetailsPage/>} loader={mugLoader}/>
           <Route path={ROUTES.DELETE} element={<DeleteMugPage/>}/>
         </Route>
       </Route>

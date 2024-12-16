@@ -9,13 +9,12 @@ const Mug = ({ mug }) => {
 
     console.log("Mug useEffect data: ", mug.name)
     console.log("Mug useEffect data: ", mug.id)
-    // console.log("MUG IMAGE URL: ", mug.imageUrl);
 
   }, [])
 
   return (
     <div className="flex flex-col w-96 h-96">
-      <Link to={ROUTES.DETAILS + mug.id}>
+      <Link to={ROUTES.DETAILS_PAGE + mug.id}>
         {mug.imageUrl == 'n/a'
           ? <></>
           : <img
@@ -38,11 +37,6 @@ export default Mug
  - Remove "n/a" or unknown from being displayed
  - Add mumin image in case of missing mug image 
  - 
-
-
-
-
-
 
 */
 

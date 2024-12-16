@@ -10,7 +10,7 @@ const NavBar = ({ navOptions }) => {
     useEffect(() => {
 
         setMenuOptions(navOptions);
-        
+
     });
 
     const linkClass = ({ isActive }) => isActive
@@ -18,14 +18,20 @@ const NavBar = ({ navOptions }) => {
         : 'px-3 py-3 hover:text-white hover:bg-slate-400 rounded-md' //inactive` link classes 
 
     const navBarOptions = menuOptions.map(
-        option => <NavLink className={linkClass} key={option.id} to={option.route}>{option.text}</NavLink>);
+        option =>
+        (<NavLink
+            className={linkClass}
+            key={option.id}
+            to={option.route}
+            end={option.route === ROUTES.ADMIN} // Apply end prop only to /admin 
+        >{option.text}</NavLink>));
 
 
-    
+
 
     return (
         <>
-            <nav className='bg-slate-300 border-b border-slate-400'>
+            <nav className='bg-slate-300'>
                 <div className='flex flex-row items-center justify-between  mx-auto max-w-full px-10 sm:px-3 md:px-7'>
                     <NavLink to={ROUTES.HOME} className='flex items-center py-3'>
                         <img

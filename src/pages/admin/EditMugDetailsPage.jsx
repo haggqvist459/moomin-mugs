@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { convertImageToString, saveList, loadList } from '../../utils';
-import { v4 as uuid } from 'uuid';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { saveList, loadList, convertImageToString, ROUTES } from '../../utils';
 
 
-const AddMugPage = () => {
+const EditMugDetailsPage = () => {
 
-  const [mugList, setMugList] = useState([]);
-  const [newMug, setNewMug] = useState({
-    'id': '',
-    'name': '',
-    'year': '',
-    'season': '',
-    'description': '',
-    'imageUrl': '',
+  const mug = useLoaderData();
+
+  const [updatedMug, setUpdatedMug] = useState({
+    'id': mug.id,
+    'name': mug.name,
+    'year': mug.year,
+    'season': mug.season,
+    'description': mug.description,
+    'imageUrl': mug.imageUrl,
   })
+
 
   useEffect(() => {
 
-    // Load mugs from localStorage
-    const storedMugs = loadList();
-    // Check loaded result 
-    console.log("HomePage useEffect storedMugs: ", storedMugs);
-    // Update state
-    setMugList(storedMugs);
+    console.log("EditMugDetailsPage useEffect ran once");
 
-  }, []);
+  }, [])
 
 
   const handlePhotoUpload = async (e) => {
-
     const file = e.target.files[0];
     // console.log('file: ', file)
     const base64Image = await convertImageToString(file);
@@ -36,47 +32,39 @@ const AddMugPage = () => {
 
   }
 
+  const updateMug = (e) => {
 
-
-  const submitForm = (e) => {
     e.preventDefault();
 
-    // Assign an ID to the mug 
-    const mugWithId = { ...newMug, id: uuid()}
+    console.log("EditMugDetailsPage updateMug start")
 
-    // Create an array to save into localStorage 
-    const updatedMugList = [...mugList, mugWithId];
+    // setUpdatedMug with the updated values from the field 
+    const previousMugList = loadList();
 
-    console.log('Before saving:', mugList);
-    console.log('After adding new mug:', updatedMugList);
+    console.log("EditMugDetailspage updateMug previousMugList: ", previousMugList);
 
-    // update state 
-    setMugList(updatedMugList);
+    const newMugList = previousMugList.map((mug) => {
+      mug.id === updatedMug.id ? { ...mug, ...updatedMug } : mug
+    });
 
-    // save into localstorage, the new array. 
-    saveList(updatedMugList);
+    console.log("EditMugDetailsPage updateMug newMugList: ", newMugList)
+    // update localstorage 
+    // saveList(newMugList)
 
-    // Clear the state and reset the form 
-    setNewMug({
-      'id': '',
-      'name': '',
-      'year': '',
-      'season': '',
-      'description': '',
-      'imageUrl': '',
-    })
-
-    // Clear the image upload field 
-    e.target.reset();
-
+    // go back to edit page 
+    // useNavigate(ROUTES.ADMIN);
   }
 
+
+
+  // Finalise form from add page and copy it in here
+  // Use default values from the loaded mug and set the updated mug with the updated values
 
   return (
     <section className='bg-slate-50 w-full min-h-screen pt-5'>
       <div className='container bg-white mx-auto w-2/4 pt-5 border shadow-md rounded-md'>
         <div className='px-5'>
-          <form onSubmit={submitForm}>
+          <form onSubmit={updateMug}>
             <div>
               <h2 className='text-2xl text-center font-bold mb-5 pt-3'>Add Mug</h2>
             </div>
@@ -92,8 +80,8 @@ const AddMugPage = () => {
                   name='name'
                   id='name'
                   required
-                  value={newMug.name}
-                  onChange={(e) => setNewMug({ ...newMug, name: e.target.value })}
+                  value={updatedMug.name}
+                  onChange={(e) => setUpdatedMug({ ...updatedMug, name: e.target.value })}
                 />
               </div>
               {/* Year */}
@@ -106,8 +94,8 @@ const AddMugPage = () => {
                   name='year'
                   id='year'
                   required
-                  value={newMug.year}
-                  onChange={(e) => setNewMug({ ...newMug, year: e.target.value })} />
+                  value={updatedMug.year}
+                  onChange={(e) => setUpdatedMug({ ...updatedMug, year: e.target.value })} />
               </div>
               {/* Season */}
               <div className='mb-2'>
@@ -118,8 +106,8 @@ const AddMugPage = () => {
                   placeholder='Summer'
                   name='season'
                   id='season'
-                  value={newMug.season}
-                  onChange={(e) => setNewMug({ ...newMug, season: e.target.value })}
+                  value={updatedMug.season}
+                  onChange={(e) => setUpdatedMug({ ...updatedMug, season: e.target.value })}
                 />
               </div>
               {/* Description */}
@@ -133,8 +121,8 @@ const AddMugPage = () => {
                   id='description'
                   rows="4"
                   required
-                  value={newMug.description}
-                  onChange={(e) => setNewMug({ ...newMug, description: e.target.value })} />
+                  value={updatedMug.description}
+                  onChange={(e) => setUpdatedMug({ ...updatedMug, description: e.target.value })} />
               </div>
               {/* image selector */}
               <div className='mb-2'>
@@ -147,11 +135,10 @@ const AddMugPage = () => {
                   placeholder='e.g. 2002 - 2010'
                   name='image'
                   id='image'
-                  required
                   onChange={(e) => handlePhotoUpload(e)} />
               </div>
               <div>
-                <button className='w-full bg-slate-300 hover:bg-slate-400 rounded font-bold py-1 mb-5' type='submit'>Add Mug</button>
+                <button className='w-full bg-slate-300 hover:bg-slate-400 rounded font-bold py-1 mb-5' type='submit'>Update Mug</button>
               </div>
             </div>
           </form>
@@ -161,27 +148,4 @@ const AddMugPage = () => {
   )
 }
 
-export default AddMugPage
-
-// same form can be used with edit mug, just add existing values
-// finish styling 
-
-/*
-
-Replaced turquoise Moomintroll mug made between 2013 - 2018. Set consists of mug, bowl and plate. Currently in production.
-
-
-*/
-
-    // Save the list to state, with the new mug
-    // if (mugList.length === 0) {
-    //   // New arrary in case its the first mug in the list 
-    //   setMugList([newMug]);
-    // } else {
-    //   // If the list has mugs in it already, add the new one at the end of the list. 
-      
-    // }
-
-        // update the list of mugs state with the new mug 
-
-    // clear all the text fields and the file uploader to prepare for the next mug 
+export default EditMugDetailsPage

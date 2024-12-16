@@ -8,13 +8,9 @@ const MainLayout = () => {
     return (
         <>
             <div className='flex flex-col h-screen justify-between'>
-                <NavBar navOptions={NAV_BAR_OPTIONS.HOME}  />
-                <div className='mb-auto flex justify-center mt-2'>
-                    <Outlet />
-                </div>
-                <div className='h-10'>
-                    <Footer />
-                </div>
+                <NavBar navOptions={NAV_BAR_OPTIONS.HOME} />
+                <Outlet />
+                <Footer />
             </div>
         </>
     )

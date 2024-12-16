@@ -8,15 +8,21 @@ const AdminLayout = () => {
         <>
             <div className='flex flex-col h-screen justify-between'>
                 <NavBar navOptions={NAV_BAR_OPTIONS.ADMIN} />
-                <div className='mb-auto flex justify-center mt-2'>
-                    <Outlet />
-                </div>
-                <div className='h-10'>
-                    <Footer />
-                </div>
+                <Outlet />
+                <Footer />
             </div>
         </>
     )
 }
 
 export default AdminLayout
+
+/* 
+
+    <div className='mb-auto flex justify-center'>
+    
+    </div>
+    <div className='h-10'>
+    
+    </div>
+*/
