@@ -1,0 +1,20 @@
+{
+    "short_name": "Moomin Mugs",
+    "name": "Moomin Mugs",
+    "icons": [
+      {
+        "src": "/assets/images/moomin-icon-192x192.jpg",
+        "type": "image/jpg",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/images/moomin-icon-192x192.jpg",
+        "type": "image/jpg",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#CBD5E1",
+    "background_color": "#CBD5E1"
+  }
