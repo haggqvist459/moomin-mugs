@@ -1,8 +1,15 @@
 import React from 'react'
 
-const AdminListItem = () => {
+const AdminListItem = ({ mug }) => {
+
   return (
-    <div>AdminListItem</div>
+      <div className='flex row items-center'>
+        <img
+          src={mug.imageUrl}
+          alt="Moomin Mug"
+          className='w-auto h-10' />
+        <h3 className='font-semibold px-5'>{mug.name}</h3>
+      </div>
   )
 }
 

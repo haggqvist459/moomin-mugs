@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { loadList, saveList } from '../../utils';
 import { FaRegTrashCan } from "react-icons/fa6";
+import { AdminListItem } from '../../components';
 
 const DeleteMugPage = () => {
 
@@ -29,28 +30,26 @@ const DeleteMugPage = () => {
     setMugList(updatedMugList);
     saveList(updatedMugList);
 
-
   }
 
   return (
-    <div className='flex w-2/4 flex-col items-center mt-5 border-2 border-slate-300'>
-      {mugList.map((mug) => (
-        <div className='flex row w-full mb-3 px-20 justify-between' key={mug.id}>
-          {/* single column list, small image + name and a bin button on the right */}
-          <div className='flex row'>
-            <img
-              src={mug.imageUrl}
-              alt="Moomin Mug"
-              className='w-auto h-10' />
-            <h3 className=''>{mug.name}</h3>
+    <section className=''>
+      <div className='container md:w-2/4 w-11/12 bg-white mx-auto py-5 border shadow-md rounded-md'>
+        <div className='flex flex-col items-center px-5'>
+          <div>
+            <h2 className='text-2xl font-bold mb-5'>Delete Mugs</h2>
           </div>
-          <div className=''>
-            {/* delete button */}
-            <FaRegTrashCan onClick={() => deleteMug(mug.id)} />
-          </div>
+          {mugList.map((mug) => (
+            <div className='flex row w-full mb-3 pb-1 justify-between items-center border-b' key={mug.id}>
+              <AdminListItem mug={mug} />
+              <div className=''>
+                <FaRegTrashCan onClick={() => deleteMug(mug.id)} />
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   )
 }
 

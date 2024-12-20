@@ -12,6 +12,8 @@ export const mugLoader = async ({ params }) => {
 
 }
 
+
+// No longer in use 
 export const loadAllMugs = async () => {
     
     try {
