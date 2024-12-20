@@ -9,12 +9,12 @@
       },
       {
         "src": "./src/assets/images/moomin-icon.jpg",
-        "type": "image/jpb",
+        "type": "image/jpg",
         "sizes": "512x512"
       }
     ],
     "start_url": "/",
     "display": "standalone",
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff"
+    "theme_color": "#CBD5E1",
+    "background_color": "#CBD5E1"
   }
