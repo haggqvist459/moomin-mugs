@@ -3,12 +3,12 @@
     "name": "Moomin Mugs",
     "icons": [
       {
-        "src": "./src/assets/images/moomin-icon.jpg",
+        "src": "/assets/images/moomin-icon-192x192.png",
         "type": "image/jpg",
         "sizes": "192x192"
       },
       {
-        "src": "./src/assets/images/moomin-icon.jpg",
+        "src": "/assets/images/moomin-icon-192x192.png",
         "type": "image/jpg",
         "sizes": "512x512"
       }
