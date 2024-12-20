@@ -3,8 +3,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 import { MainLayout, AdminLayout } from './layouts';
 import { HomePage, DetailsPage, AdminPage, ErrorPage } from './pages';
 import { AddMugPage, EditMugPage, DeleteMugPage, EditMugDetailsPage } from './pages/admin';
-import { ROUTES } from './utils/constants'
-import { mugLoader } from './utils';
+import { mugLoader, ROUTES } from './utils';
 
 
 function App() {
@@ -32,10 +31,3 @@ function App() {
 }
 
 export default App;
-
-/**
-
-loader={mugLoader}
-loader={() => loadAllMugs}
-
- */

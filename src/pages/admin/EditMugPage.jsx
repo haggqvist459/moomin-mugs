@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { loadList, ROUTES, saveList } from '../../utils';
-import { Link } from 'react-router-dom';
+import { loadList, ROUTES } from '../../utils';
+import { Link, useNavigate } from 'react-router-dom';
+import { AdminListItem } from '../../components';
+import { FaRegPenToSquare } from "react-icons/fa6";
 
 const EditMugPage = () => {
 
   const [mugList, setMugList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -16,25 +19,21 @@ const EditMugPage = () => {
     setMugList(storedMugs);
   }, [])
 
+
   return (
-    <section className='bg-slate-50 w-full min-h-screen pt-5'>
-      <div className='container w-2/4 bg-white mx-auto py-5 border shadow-md rounded-md flex justify-center'>
+    <section className=''>
+      <div className='container md:w-2/4 w-11/12 bg-white mx-auto py-5 border shadow-md rounded-md'>
         <div className='flex flex-col items-center px-5'>
           <div>
-            <h2 className='text-2xl text-center font-bold mb-5'>Edit Mug Details</h2>
+            <h2 className='text-2xl font-bold mb-5'>Edit Mug Details</h2>
           </div>
           {mugList.map((mug) => (
-            <Link key={mug.id} to={ROUTES.EDIT_PAGE + mug.id}>
-              <div className='flex row w-full mb-3 px-20'>
-                <div className='flex row'>
-                  <img
-                    src={mug.imageUrl}
-                    alt="Moomin Mug"
-                    className='w-auto h-10' />
-                  <h3 className=''>{mug.name}</h3>
-                </div>
+            <div className='flex row w-full mb-3 pb-1 justify-between items-center border-b' key={mug.id}>
+              <AdminListItem mug={mug} />
+              <div className=''>
+                <FaRegPenToSquare onClick={() => navigate(ROUTES.EDIT_PAGE + mug.id)} />
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

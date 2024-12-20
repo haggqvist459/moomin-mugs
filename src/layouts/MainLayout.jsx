@@ -5,15 +5,15 @@ import { NAV_BAR_OPTIONS } from '../utils'
 
 const MainLayout = () => {
 
-    return (
-        <>
-            <div className='flex flex-col h-screen justify-between'>
-                <NavBar navOptions={NAV_BAR_OPTIONS.HOME} />
-                <Outlet />
-                <Footer />
-            </div>
-        </>
-    )
+  return (
+    <div>
+      <NavBar navOptions={NAV_BAR_OPTIONS.HOME} />
+      <div className='bg-slate-100 min-h-screen flex flex-col py-5'>
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  )
 }
 
 export default MainLayout

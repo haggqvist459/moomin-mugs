@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { saveList, loadList, convertImageToString, ROUTES } from '../../utils';
+import { FormField } from '../../components';
 
 
 const EditMugDetailsPage = () => {
 
   const mug = useLoaderData();
+  const fileInputRef = useRef();
+  const navigate = useNavigate();
 
   const [updatedMug, setUpdatedMug] = useState({
     'id': mug.id,
     'name': mug.name,
+    'number': mug.number,
     'year': mug.year,
     'season': mug.season,
     'description': mug.description,
@@ -28,9 +32,20 @@ const EditMugDetailsPage = () => {
     const file = e.target.files[0];
     // console.log('file: ', file)
     const base64Image = await convertImageToString(file);
-    setNewMug({ ...newMug, imageUrl: base64Image });
+    setUpdatedMug({ ...updatedMug, imageUrl: base64Image });
 
   }
+
+  const handleImageButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Programmatically trigger the file input
+    }
+  }
+
+  const cancelForm = () => {
+    return navigate(ROUTES.EDIT_PAGE);
+  }
+
 
   const updateMug = (e) => {
 
@@ -43,71 +58,67 @@ const EditMugDetailsPage = () => {
 
     console.log("EditMugDetailspage updateMug previousMugList: ", previousMugList);
 
-    const newMugList = previousMugList.map((mug) => {
-      mug.id === updatedMug.id ? { ...mug, ...updatedMug } : mug
+    const updatedMugList = previousMugList.map((mug) => {
+      return mug.id === updatedMug.id ? { ...mug, ...updatedMug } : mug
     });
 
-    console.log("EditMugDetailsPage updateMug newMugList: ", newMugList)
+    console.log("EditMugDetailsPage updateMug updatedMugList: ", updatedMugList);
     // update localstorage 
-    // saveList(newMugList)
+    saveList(updatedMugList);
 
     // go back to edit page 
-    // useNavigate(ROUTES.ADMIN);
+    return navigate(ROUTES.EDIT_PAGE);
   }
-
-
 
   // Finalise form from add page and copy it in here
   // Use default values from the loaded mug and set the updated mug with the updated values
 
   return (
-    <section className='bg-slate-50 w-full min-h-screen pt-5'>
-      <div className='container bg-white mx-auto w-2/4 pt-5 border shadow-md rounded-md'>
+    <section className=''>
+      <div className='container bg-white mx-auto md:w-2/4 w-11/12 pt-5 border shadow-md rounded-md'>
         <div className='px-5'>
           <form onSubmit={updateMug}>
             <div>
-              <h2 className='text-2xl text-center font-bold mb-5 pt-3'>Add Mug</h2>
+              <h2 className='text-2xl text-center font-bold mb-5'>Edit Mug Details</h2>
             </div>
             <div className=''>
               {/* Text fields and labels for: */}
               {/* Name */}
-              <div className='mb-2'>
-                <label htmlFor='name' className='font-bold mb-1'>Name: </label>
-                <input
-                  type='text'
-                  className='border rounded w-full px-2'
-                  placeholder='e.g. Ski Jump'
-                  name='name'
-                  id='name'
-                  required
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 mb-2">
+                <FormField
+                  labelValue={"Name:"}
+                  placeholder={"e.g. Moomintroll"}
+                  id={"name"}
                   value={updatedMug.name}
-                  onChange={(e) => setUpdatedMug({ ...updatedMug, name: e.target.value })}
+                  onChange={(value) => { handleFieldChange('name', value) }}
+                  required={false}
                 />
-              </div>
-              {/* Year */}
-              <div className='mb-2'>
-                <label htmlFor='year' className='font-bold mb-1'>Year: </label>
-                <input
-                  type='text'
-                  className='border rounded w-full px-2'
-                  placeholder='2002 - 2010'
-                  name='year'
-                  id='year'
-                  required
+                {/* Number */}
+                <FormField
+                  labelValue={"Number:"}
+                  placeholder={"1"}
+                  id={"number"}
+                  value={updatedMug.number}
+                  onChange={(value) => { handleFieldChange('number', value) }}
+                  required={false}
+                />
+                {/* Year */}
+                <FormField
+                  labelValue={"Season:"}
+                  placeholder={"1992"}
+                  id={"year"}
                   value={updatedMug.year}
-                  onChange={(e) => setUpdatedMug({ ...updatedMug, year: e.target.value })} />
-              </div>
-              {/* Season */}
-              <div className='mb-2'>
-                <label htmlFor='season' className='font-bold mb-1'>Season: </label>
-                <input
-                  type='text'
-                  className='border rounded w-full px-2'
-                  placeholder='Summer'
-                  name='season'
-                  id='season'
+                  onChange={(value) => { handleFieldChange('year', value) }}
+                  required={false}
+                />
+                {/* Season */}
+                <FormField
+                  labelValue={"Season:"}
+                  placeholder={"Summer"}
+                  id={"season"}
                   value={updatedMug.season}
-                  onChange={(e) => setUpdatedMug({ ...updatedMug, season: e.target.value })}
+                  onChange={(value) => { handleFieldChange('season', value) }}
+                  required={false}
                 />
               </div>
               {/* Description */}
@@ -129,16 +140,23 @@ const EditMugDetailsPage = () => {
                 <label htmlFor='name' className='font-bold mb-1'>Image: </label>
                 <input
                   type='file'
+                  ref={fileInputRef}
                   accept='image/*'
                   alt='select image'
                   className='border rounded w-full'
                   placeholder='e.g. 2002 - 2010'
                   name='image'
-                  id='image'
+                  style={{ display: 'none' }}
                   onChange={(e) => handlePhotoUpload(e)} />
+                <button
+                  type='button'
+                  id='image'
+                  className='w-full bg-slate-600 hover:bg-slate-400 text-white rounded font-bold py-1 mt-2 mb-1'
+                  onClick={handleImageButtonClick}>Change Image</button>
               </div>
-              <div>
-                <button className='w-full bg-slate-300 hover:bg-slate-400 rounded font-bold py-1 mb-5' type='submit'>Update Mug</button>
+              <div className='flex space-x-2 mb-5'>
+                <button className='w-1/2 bg-slate-300 hover:bg-slate-400 rounded font-bold' type='submit'>Save Changes</button>
+                <button className='w-1/2 hover:bg-slate-400 rounded border-2 border-bg-300 font-bold' type='button' onClick={() => cancelForm()}>Cancel</button>
               </div>
             </div>
           </form>

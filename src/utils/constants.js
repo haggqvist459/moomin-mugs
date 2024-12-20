@@ -11,15 +11,6 @@ export const ROUTES = {
     ADD: '/admin/add'
 }
 
-/* 
-
-DETAILS: '/details/:id',
-DETAILS_PAGE: '/details/',
-
-    DETAILS_PAGE: 'details/:id',
-    DETAILS: 'details/',
-
-*/
 
 export const NAV_BAR_OPTIONS = {
     HOME: [
@@ -63,14 +54,17 @@ export const NAV_BAR_OPTIONS = {
     ]
 }
 
-export const API = {
-    URL: 'http://localhost:8888/mugs/'
+export const ADMIN_LIST_OPTIONS = {
+    EDIT: 'edit',
+    DELETE: 'delete'
 }
+
 
 
 export const LOCALSTORAGE_KEY = 'storedMugList'
 
 
+// NOT IN USE 
 
 export const INDEXED_DB = {
     'db': 'mugsDatabase',
@@ -81,4 +75,8 @@ export const INDEXED_DB = {
     'nameIndex': 'name',
     'yearIndex': 'releaseYear',
     'yearSeasonIndex': 'yearAndSeason'
+}
+
+export const API = {
+    URL: 'http://localhost:8888/mugs/'
 }
