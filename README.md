@@ -1,4 +1,7 @@
-# Todo: 
+[Visit site](https://moomin-mugs.netlify.app)
+
+Backup .txt file located in assets folder
+## Todo: 
 
 ### Main Page: 
 - [x] List of mugs
